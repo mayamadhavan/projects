@@ -8,6 +8,7 @@ I am working with US visa data. Since I'm a natural born citizen, I don't have a
 
 ## Data
 I am working with the following Kaggle Data Set as my base data set: https://www.kaggle.com/jboysen/us-perm-visas
+
 On its own, it has 154 columns and many rows (69.79 MB).
 
 I'm personally most interested in:
