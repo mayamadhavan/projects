@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- specifically for fancy sliders, like fare -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.min.css'/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <h1>That Sinking Feeling</h1>
+      <p>Because sometimes, ice is not nice</p>
+    </div>
+
+    <!-- Use navbar just as a visual divider -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    </nav>
+
+    <div class="container" style="margin-top:30px">
+      <div class="row">
+        <div class="col-sm-4">
+          <h2>About The Model</h2>
+          <hr class="d-sm-none">
+          This is a model of whether or not you would survive the Titanic!
+
+          It is epic!
+        </div>
+        <div class="col-sm-8">
+          <h1>The greatest Titanic app</h1>
+
+          <p>Will <i>you</i> survive?</i>
+
+
+              <div class="form-group">
+                  <div class="col-xs-3">
+                      <label for="gender"><h4><span class=" label label-primary">Gender</span></h4></label>
+                  </div>
+                  <div class="col-xs-2">
+                      <select id="gender" class="form-control input-lg" autocomplete="off">
+                          <option value='M'>Male</option>
+                          <option value='F'>Female</option>
+                      </select>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-xs-3">
+                      <label for="class_type"><h4><span class=" label label-primary">Passenger Class</span></h4></label>
+                  </div>
+                  <div class="col-xs-2">
+                      <input type="number" id="passenger_class" min="1" max="5" class="form-control input-lg"/>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-xs-3">
+                      <label for="age"><h4><span class=" label label-primary">Age</span></h4></label>
+                  </div>
+                  <div class="col-xs-2">
+                      <input type="number" id="age" min="5" max="100" class="form-control input-lg"/>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-xs-3">
+                      <label for="fare"><h4><span class=" label label-primary">Fare</span></h4></label>
+                  </div>
+                  <div class="col-xs-2">
+                      <input type="range" id="fare" min="1" max="100" step="0.50"/>
+                      <span>
+                        Fare set to $<span id='read_fare'>1.00</span>
+                      </span>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <button id="submit">Make prediction</button>
+              </div>
+
+
+          </div>
+        </div>
+
+        <div class="form-group" style="display: none" id='the_result_div'>
+          <div class="col-xs-3">
+              <label for="class_type"><h4><span class=" label label-primary">Prediction</span></h4></label>
+          </div>
+          <div>
+            You <span id="hard_predict"></span> survive (survival probability is <b><span id="soft_predict"></span>%</b>).
+          </div>
+        </div>
+    </div>
+
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      Like this? Join the <a href="http://thisismetis.com/">Metis Data Science Community</a>!
+    </div>
+  </body>
+  <script>
+  $('#submit').click( () => { cool(); } );
+  $('#fare').change( () => {
+    $('#read_fare').html($('#fare').val());
+  });
+  function cool(){
+    let features = {
+      'Pclass': $('#passenger_class').val(),
+      'Sex': $('#gender').val(),
+      'Age': $('#age').val(),
+      'SibSp': 1,
+      'Parch': 0,
+      'Fare': +$('#fare').val()
+    }
+    console.log(features);
+    $.ajax({
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "/predict",  // Replace with URL of POST handler
+      dataType: "json",
+      async: true,
+      data: JSON.stringify(features),
+      success: (result) => {
+        $('#hard_predict').html(result['prediction'] ? '<b>will</b>' : 'will <b>not</b>' );
+        $('#soft_predict').html(Math.floor(result['prob_survived']*1000)/10);
+        $('#the_result_div').show();
+      },
+      error: (result) => {
+        alert('I dunno what you did');
+      }
+    })
+  }
+  </script>
+  </html>
