@@ -19,6 +19,7 @@ example = {
 }
 
 def prediction(features):
+    print(features)
     try:
         city_origin=replacements[features['foreign_worker_info_city'].upper()]
     except:
@@ -45,12 +46,12 @@ def prediction(features):
     prob_certified = pipeline.predict_proba(test_case_dummies)[0, 1]
     outcome=''
     if int(prob_certified > 0.5):
-        outcome+='Certified Visa'
-    else:
         outcome+='Denied Visa'
+    else:
+        outcome+='Certified Visa'
     result = {
         'prediction': outcome,
-        'prob_certified': prob_certified
+        'prob_certified': round(prob_certified*100, 0)
     }
     return result
 

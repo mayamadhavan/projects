@@ -1,139 +1,449 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<html>
 
-    <!-- specifically for fancy sliders, like fare -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.min.css'/>
+<body>
+<header> <h1> The Visa App </h1> </header>
+  <h2> US immigration is confusing. We're here to help. </h2>
+</header>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
+<h3> First tell us a little about yourself </h3>
 
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      <h1>That Sinking Feeling</h1>
-      <p>Because sometimes, ice is not nice</p>
-    </div>
-
-    <!-- Use navbar just as a visual divider -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    </nav>
-
-    <div class="container" style="margin-top:30px">
-      <div class="row">
-        <div class="col-sm-4">
-          <h2>About The Model</h2>
-          <hr class="d-sm-none">
-          This is a model of whether or not you would survive the Titanic!
-
-          It is epic!
-        </div>
-        <div class="col-sm-8">
-          <h1>The greatest Titanic app</h1>
-
-          <p>Will <i>you</i> survive?</i>
-
-
-              <div class="form-group">
-                  <div class="col-xs-3">
-                      <label for="gender"><h4><span class=" label label-primary">Gender</span></h4></label>
-                  </div>
-                  <div class="col-xs-2">
-                      <select id="gender" class="form-control input-lg" autocomplete="off">
-                          <option value='M'>Male</option>
-                          <option value='F'>Female</option>
-                      </select>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <div class="col-xs-3">
-                      <label for="class_type"><h4><span class=" label label-primary">Passenger Class</span></h4></label>
-                  </div>
-                  <div class="col-xs-2">
-                      <input type="number" id="passenger_class" min="1" max="5" class="form-control input-lg"/>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <div class="col-xs-3">
-                      <label for="age"><h4><span class=" label label-primary">Age</span></h4></label>
-                  </div>
-                  <div class="col-xs-2">
-                      <input type="number" id="age" min="5" max="100" class="form-control input-lg"/>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <div class="col-xs-3">
-                      <label for="fare"><h4><span class=" label label-primary">Fare</span></h4></label>
-                  </div>
-                  <div class="col-xs-2">
-                      <input type="range" id="fare" min="1" max="100" step="0.50"/>
-                      <span>
-                        Fare set to $<span id='read_fare'>1.00</span>
-                      </span>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                <button id="submit">Make prediction</button>
-              </div>
+<div>
+You're applying for this type of visa:
+  <select id='class_of_admission'>
+    <option value="J-1">J-1</option>
+    <option value="B-2">B-2</option>
+    <option value="H-1B">H-1B</option>
+    <option value="L-1">L-1</option>
+    <option value="EWI">EWI</option>
+    <option value="E-2">E-2</option>
+    <option value="E-1">E-1</option>
+    <option value="H-2B">H-2B</option>
+    <option value="TPS">TPS</option>
+    <option value="F-1">F-1</option>
+    <option value="B-1">B-1</option>
+    <option value="C-1">C-1</option>
+    <option value="TN">TN</option>
+    <option value="H-4">H-4</option>
+    <option value="O-1">O-1</option>
+    <option value="R-1">R-1</option>
+    <option value="L-2">L-2</option>
+    <option value="Q">Q</option>
+    <option value="F-2">F-2</option>
+    <option value="H-1B1">H-1B1</option>
+    <option value="Parolee">Parolee</option>
+    <option value="G-5">G-5</option>
+    <option value="E-3">E-3</option>
+    <option value="H-2A">H-2A</option>
+    <option value="VWT">VWT</option>
+    <option value="P-1">P-1</option>
+    <option value="A1/A2">A1/A2</option>
+    <option value="D-1">D-1</option>
+    <option value="A-3">A-3</option>
+    <option value="R-2">R-2</option>
+    <option value="H-1C">H-1C</option>
+    <option value="H-3">H-3</option>
+    <option value="J-2">J-2</option>
+    <option value="P-4">P-4</option>
+    <option value="I">I</option>
+    <option value="H-1A">H-1A</option>
+    <option value="G-1">G-1</option>
+    <option value="VWB">VWB</option>
+    <option value="G-4">G-4</option>
+    <option value="P-3">P-3</option>
+    <option value="AOS/H-1B">AOS/H-1B</option>
+    <option value="O-3">O-3</option>
+    <option value="O-2">O-2</option>
+    <option value="H1B">H1B</option>
+    <option value="N">N</option>
+    <option value="T-1">T-1</option>
+    <option value="TD">TD</option>
+    <option value="M-1">M-1</option>
+    <option value="U-1">U-1</option>
+    <option value="AOS">AOS</option>
+    <option value="P-2">P-2</option>
+    <option value="C-3">C-3</option>
+    <option value="K-1">K-1</option>
+    <option value="V-2">V-2</option>
+    <option value="M-2">M-2</option>
+    <option value="Parol">Parol</option>
+    <option value="Not in USA">US Visa for non USA location</option>
+    <option value="nan">I don't know</option>
+  </select>
+</div>
 
 
-          </div>
-        </div>
+<div>
+You are a citizen of:
+  <select id='country_of_citizenship'>
+    <option value="ARMENIA">Armenia</option>
+    <option value="POLAND">Poland</option>
+    <option value="INDIA">India</option>
+    <option value="SOUTH KOREA">South Korea</option>
+    <option value="CANADA">Canada</option>
+    <option value="ECUADOR">Ecuador</option>
+    <option value="MEXICO">Mexico</option>
+    <option value="PAKISTAN">Pakistan</option>
+    <option value="SINGAPORE">Singapore</option>
+    <option value="RUSSIA">Russia</option>
+    <option value="VENEZUELA">Venezuela</option>
+    <option value="JAPAN">Japan</option>
+    <option value="SOUTH AFRICA">South Africa</option>
+    <option value="CHINA">China</option>
+    <option value="PHILIPPINES">Philippines</option>
+    <option value="TURKEY">Turkey</option>
+    <option value="VIETNAM">Vietnam</option>
+    <option value="IRAN">Iran</option>
+    <option value="CAMEROON">Cameroon</option>
+    <option value="EL SALVADOR">El Salvador</option>
+    <option value="JAMAICA">Jamaica</option>
+    <option value="INDONESIA">Indonesia</option>
+    <option value="SWEDEN">Sweden</option>
+    <option value="PORTUGAL">Portugal</option>
+    <option value="COLOMBIA">Colombia</option>
+    <option value="TRINIDAD AND TOBAGO">Trinidad and Tobago</option>
+    <option value="GUATEMALA">Guatemala</option>
+    <option value="BANGLADESH">Bangladesh</option>
+    <option value="MONGOLIA">Mongolia</option>
+    <option value="SPAIN">Spain</option>
+    <option value="BRAZIL">Brazil</option>
+    <option value="NIGERIA">Nigeria</option>
+    <option value="BOLIVIA">Bolivia</option>
+    <option value="ISRAEL">Israel</option>
+    <option value="ITALY">Italy</option>
+    <option value="ARGENTINA">Argentina</option>
+    <option value="IRELAND">Ireland</option>
+    <option value="BULGARIA">Bulgaria</option>
+    <option value="EGYPT">Egypt</option>
+    <option value="TAIWAN">Taiwan</option>
+    <option value="UNITED KINGDOM">United Kingdom</option>
+    <option value="SLOVAKIA">Slovakia</option>
+    <option value="DOMINICAN REPUBLIC">Dominican Republic</option>
+    <option value="NEPAL">Nepal</option>
+    <option value="KENYA">Kenya</option>
+    <option value="ROMANIA">Romania</option>
+    <option value="MALAYSIA">Malaysia</option>
+    <option value="UNITED ARAB EMIRATES">United Arab Emirates</option>
+    <option value="SRI LANKA">Sri Lanka</option>
+    <option value="PERU">Peru</option>
+    <option value="FRANCE">France</option>
+    <option value="UKRAINE">Ukraine</option>
+    <option value="HUNGARY">Hungary</option>
+    <option value="PANAMA">Panama</option>
+    <option value="PARAGUAY">Paraguay</option>
+    <option value="HONG KONG">Hong Kong</option>
+    <option value="KUWAIT">Kuwait</option>
+    <option value="CHILE">Chile</option>
+    <option value="UNITED STATES OF AMERICA">United States of America</option>
+    <option value="COSTA RICA">Costa Rica</option>
+    <option value="GEORGIA">Georgia</option>
+    <option value="AUSTRALIA">Australia</option>
+    <option value="MOLDOVA">Moldova</option>
+    <option value="LEBANON">Lebanon</option>
+    <option value="BARBADOS">Barbados</option>
+    <option value="NEW ZEALAND">New Zealand</option>
+    <option value="NETHERLANDS">Netherlands</option>
+    <option value="IVORY COAST">Ivory Coast</option>
+    <option value="THAILAND">Thailand</option>
+    <option value="GHANA">Ghana</option>
+    <option value="SERBIA AND MONTENEGRO">Serbia and mMntenegro</option>
+    <option value="BURKINA FASO">Burkina Faso</option>
+    <option value="ZAMBIA">Zambia</option>
+    <option value="MALI">Mali</option>
+    <option value="GERMANY">Germany</option>
+    <option value="SWITZERLAND">Switzerland</option>
+    <option value="SLOVENIA">Slovenia</option>
+    <option value="SYRIA">Syria</option>
+    <option value="GRENADA">Grenada</option>
+    <option value="BELARUS">Belarus</option>
+    <option value="HONDURAS">Honduras</option>
+    <option value="CZECH REPUBLIC">Czech Republic</option>
+    <option value="BELIZE">Belize</option>
+    <option value="JORDAN">Jordan</option>
+    <option value="BELGIUM">Belgium</option>
+    <option value="ALBANIA">Albania</option>
+    <option value="GREECE">Greece</option>
+    <option value="AUSTRIA">Austria</option>
+    <option value="FIJI">Fiji</option>
+    <option value="ZIMBABWE">Zimbabwe</option>
+    <option value="ESTONIA">Estonia</option>
+    <option value="DENMARK">Denmark</option>
+    <option value="GUYANA">Guyana</option>
+    <option value="DOMINICA">Dominica</option>
+    <option value="SENEGAL">Senegal</option>
+    <option value="MOROCCO">Morocco</option>
+    <option value="LAOS">Laos</option>
+    <option value="CAMBODIA">Cambodia</option>
+    <option value="ST VINCENT">St. Vincent</option>
+    <option value="MAURITIUS">Mauritius</option>
+    <option value="NORWAY">Norway</option>
+    <option value="KYRGYZSTAN">Kyrgyzstan</option>
+    <option value="TURKMENISTAN">Turkmenistan</option>
+    <option value="BURMA (MYANMAR)">Burma (Myanmar)</option>
+    <option value="LITHUANIA">Lithuania</option>
+    <option value="AFGHANISTAN">Afghanistan</option>
+    <option value="FINLAND">Finland</option>
+    <option value="CYPRUS">Cyprus</option>
+    <option value="LATVIA">Latvia</option>
+    <option value="NICARAGUA">Nicaragua</option>
+    <option value="BHUTAN">Bhutan</option>
+    <option value="NORTH KOREA">North korea</option>
+    <option value="ETHIOPIA">Ethiopia</option>
+    <option value="TUNISIA">Tunisia</option>
+    <option value="ST LUCIA">St. Lucia</option>
+    <option value="BOSNIA AND HERZEGOVINA">Bosnia and Herzegovina</option>
+    <option value="AZERBAIJAN">Azerbaijan</option>
+    <option value="OMAN">Oman</option>
+    <option value="BAHRAIN">Bahrain</option>
+    <option value="SUDAN">Sudan</option>
+    <option value="URUGUAY">Uruguay</option>
+    <option value="YUGOSLAVIA">Yugoslavia</option>
+    <option value="KAZAKHSTAN">Kazakhstan</option>
+    <option value="TANZANIA">Tanzania</option>
+    <option value="UZBEKISTAN">Uzbekistan</option>
+    <option value="PALESTINE">Palestine</option>
+    <option value="SAUDI ARABIA">Saudi arabia</option>
+    <option value="UGANDA">Uganda</option>
+    <option value="LIBYA">Libya</option>
+    <option value="RWANDA">Rwanda</option>
+    <option value="CROATIA">Croatia</option>
+    <option value="BAHAMAS">Bahamas</option>
+    <option value="YEMEN">Yemen</option>
+    <option value="MALTA">Malta</option>
+    <option value="ST KITTS AND NEVIS">St. Kitts and Nevis</option>
+    <option value="HAITI">Haiti</option>
+    <option value="LIBERIA">Liberia</option>
+    <option value="SIERRA LEONE">Sierra Leone</option>
+    <option value="ICELAND">Iceland</option>
+    <option value="MACEDONIA">Macedonia</option>
+    <option value="GAMBIA">Gambia</option>
+    <option value="TOGO">Togo</option>
+    <option value="ANGOLA">Angola</option>
+    <option value="IRAQ">Iraq</option>
+    <option value="KOSOVO">Kosovo</option>
+    <option value="TAJIKISTAN">Tajikistan</option>
+    <option value="nan">nan</option>
+    <option value="BURUNDI">Burundi</option>
+    <option value="GABON">Gabon</option>
+    <option value="DEMOCRATIC REPUBLIC OF CONGO">Democratic Republic of Congo</option>
+    <option value="MALDIVES">Maldives</option>
+    <option value="PAPUA NEW GUINEA">Papua New Guinea</option>
+    <option value="CENTRAL AFRICAN REPUBLIC">Central African Republic</option>
+    <option value="LUXEMBOURG">Luxembourg</option>
+    <option value="SURINAME">Suriname</option>
+    <option value="MADAGASCAR">Madagascar</option>
+    <option value="CAYMAN ISLANDS">Cayman Islands</option>
+    <option value="MOZAMBIQUE">Mozambique</option>
+    <option value="BOTSWANA">Botswana</option>
+    <option value="BENIN">Benin</option>
+    <option value="NIGER">Niger</option>
+    <option value="BERMUDA">Bermuda</option>
+    <option value="MACAU">Macau</option>
+    <option value="LESOTHO">Lesotho</option>
+    <option value="VANUATU">Vanuatu</option>
+    <option value="ALGERIA">Algeria</option>
+    <option value="ARUBA">Aruba</option>
+    <option value="TURKS AND CAICOS ISLANDS">Turks and Caicos Islands</option>
+    <option value="MARSHALL ISLANDS">Marshall Islands</option>
+    <option value="SERBIA">Serbia</option>
+    <option value="GUINEA">Guinea</option>
+    <option value="ERITREA">Eritrea</option>
+    <option value="MONTENEGRO">Montenegro</option>
+    <option value="MALAWI">Malawi</option>
+    <option value="PALESTINIAN TERRITORIES">Palestinian Territories</option>
+    <option value="NAMIBIA">Namibia</option>
+    <option value="ANTIGUA AND BARBUDA">Antigua and barbuda</option>
+    <option value="QATAR">Qatar</option>
+    <option value="MAURITANIA">Mauritania</option>
+    <option value="COTE d'IVOIRE">Cote d'ivoire</option>
+    <option value="SAINT VINCENT AND THE GRENADINES">Saint Vincent and the Grenadines</option>
+    <option value="MONACO">Monaco</option>
+    <option value="GUINEA-BISSAU">Guinea-Bissau</option>
+    <option value="SEYCHELLES">Seychelles</option>
+    <option value="SOUTH SUDAN">South Sudan</option>
+    <option value="NETHERLANDS ANTILLES">Netherlands Antilles</option>
+    <option value="KIRIBATI">Kiribati</option>
+    <option value="EQUATORIAL GUINEA">Equatorial Guinea</option>
+    <option value="SAMOA">Samoa</option>
+    <option value="REPUBLIC OF CONGO">Republic of Congo</option>
+    <option value="BRITISH VIRGIN ISLANDS">British Virgin Islands</option>
+    <option value="SAO TOME AND PRINCIPE">Sao Tome and Principe</option>
+    <option value="LIECHTENSTEIN">Liechtenstein</option>
+    <option value="SOMALIA">Somalia</option>
+    <option value="CUBA">Cuba</option>
+    <option value="SWAZILAND">Swaziland</option>
+    <option value="ANDORRA">Andorra</option>
+    <option value="SOVIET UNION">Soviet Union</option>
+    <option value="CHAD">Chad</option>
+    <option value="COMOROS">Comoros</option>
+    <option value="BRUNEI">Brunei</option>
+    <option value="CAPE VERDE">Cape Verde</option>
+  </select>
+</div>
 
-        <div class="form-group" style="display: none" id='the_result_div'>
-          <div class="col-xs-3">
-              <label for="class_type"><h4><span class=" label label-primary">Prediction</span></h4></label>
-          </div>
-          <div>
-            You <span id="hard_predict"></span> survive (survival probability is <b><span id="soft_predict"></span>%</b>).
-          </div>
-        </div>
-    </div>
+
+<div>
+From this city:
+<input id="foreign_worker_info_city">
+</input>
+</div>
 
 
-    <div class="jumbotron text-center" style="margin-bottom:0">
-      Like this? Join the <a href="http://thisismetis.com/">Metis Data Science Community</a>!
-    </div>
-  </body>
+<div>
+Which state are you trying to go to?:
+  <select id='employer_state'>
+    <option value="NEW YORK">New York</option>
+    <option value="VIRGINIA">Virginia</option>
+    <option value="FLORIDA">Florida</option>
+    <option value="DELAWARE">Delaware</option>
+    <option value="NEW JERSEY">New Jersey</option>
+    <option value="GEORGIA">Georgia</option>
+    <option value="MARYLAND">Maryland</option>
+    <option value="ILLINOIS">Illinois</option>
+    <option value="TEXAS">Texas</option>
+    <option value="KENTUCKY">Kentucky</option>
+    <option value="WYOMING">Wyoming</option>
+    <option value="OHIO">Ohio</option>
+    <option value="MISSISSIPPI">Mississippi</option>
+    <option value="MASSACHUSETTS">Massachusetts</option>
+    <option value="NORTH CAROLINA">North Carolina</option>
+    <option value="CALIFORNIA">California</option>
+    <option value="MISSOURI">Missouri</option>
+    <option value="CONNECTICUT">Connecticut</option>
+    <option value="ARIZONA">Arizona</option>
+    <option value="WISCONSIN">Wisconsin</option>
+    <option value="PENNSYLVANIA">Pennsylvania</option>
+    <option value="WASHINGTON">Washington</option>
+    <option value="COLORADO">Colorado</option>
+    <option value="MINNESOTA">Minnesota</option>
+    <option value="NEVADA">Nevada</option>
+    <option value="UTAH">Utah</option>
+    <option value="ALABAMA">Alabama</option>
+    <option value="OKLAHOMA">Oklahoma</option>
+    <option value="LOUISIANA">Louisiana</option>
+    <option value="RHODE ISLAND">Rhode island</option>
+    <option value="DISTRICT OF COLUMBIA">District of Columbia</option>
+    <option value="MICHIGAN">Michigan</option>
+    <option value="IOWA">Iowa</option>
+    <option value="NEW HAMPSHIRE">New Hampshire</option>
+    <option value="INDIANA">Indiana</option>
+    <option value="SOUTH DAKOTA">South Dakota</option>
+    <option value="OREGON">Oregon</option>
+    <option value="NEBRASKA">Nebraska</option>
+    <option value="KANSAS">Kansas</option>
+    <option value="TENNESSEE">Tennessee</option>
+    <option value="PUERTO RICO">Puerto Rico</option>
+    <option value="ARKANSAS">Arkansas</option>
+    <option value="GUAM">Guam</option>
+    <option value="WEST VIRGINIA">West Virginia</option>
+    <option value="SOUTH CAROLINA">South Carolina</option>
+    <option value="IDAHO">Idaho</option>
+    <option value="VIRGIN ISLANDS">Virgin Islands</option>
+    <option value="NORTH DAKOTA">North Dakota</option>
+    <option value="HAWAII">Hawaii</option>
+    <option value="VERMONT">Vermont</option>
+    <option value="MAINE">Maine</option>
+    <option value="NEW MEXICO">New Mexico</option>
+    <option value="NORTHERN MARIANA ISLANDS">Northern Mariana Islands</option>
+    <option value="ALASKA">Alaska</option>
+    <option value="MONTANA">Montana</option>
+    <option value="MARSHALL ISLANDS">Marshall Islands</option>
+    <option value="BRITISH COLUMBIA">British Columbia</option>
+  </select>
+</div>
+
+
+<div>
+Your highest acheived degree is:
+  <select id='foreign_worker_info_education'>
+    <option value="High School">High School</option>
+    <option value="Master's">Master's</option>
+    <option value="None">None</option>
+    <option value="Bachelor's">Bachelor's</option>
+    <option value="Associate's">Associate's</option>
+    <option value="Other">Other</option>
+    <option value="Doctorate">Doctorate</option>
+    <option value="nan">I don't know</option>
+  </select>
+</div>
+
+
+<div>
+You're going to work in:
+  <select id='job_category'>
+    <option value="programming">Programming</option>
+    <option value="business">Business</option>
+    <option value="finance/consulting/tax">Finance/Consulting/Tax</option>
+    <option value="engineer">Non-Software Engineering</option>
+    <option value="medicine">Medicine</option>
+    <option value="marketing/sales">Marketing/Sales</option>
+    <option value="academic">Academia</option>
+    <option value="IT">IT</option>
+    <option value="14">14</option>
+    <option value="related">A Not Listed Field that is Related to My Experience</option>
+    <option value="Other">Other (Not Listed)</option>
+    <option value="H.14">I'm a Dependent</option><
+    <option value="h11">Job? I'm going to Cuba</option>
+    <option value="nan">I don't know</option>
+  </select>
+</div>
+
+
+
+
+
+
+
+
+
+
+<h3> So, will you get certified? </h3>
+
+  <div>
+    <button id="submit">Get My Results!</button>
+  </div>
+  Our prediction is:
+  <table>
+    <tr><td>Will you get it?</td><td id="hard_predict"></td></tr>
+    <tr><td>With a likelihood of</td><td id="soft_predict"></td></tr>
+  </table>
+
+</body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script>
-  $('#submit').click( () => { cool(); } );
-  $('#fare').change( () => {
-    $('#read_fare').html($('#fare').val());
-  });
-  function cool(){
+
+  $('#submit').click( () => { testing(); } );
+
+  function testing(){
     let features = {
-      'Pclass': $('#passenger_class').val(),
-      'Sex': $('#gender').val(),
-      'Age': $('#age').val(),
-      'SibSp': 1,
-      'Parch': 0,
-      'Fare': +$('#fare').val()
+      'class_of_admission': $("#class_of_admission").val(),
+      'country_of_citizenship': $("#country_of_citizenship").val(),
+      'employer_state': $("#employer_state").val(),
+      'foreign_worker_info_city': $("#foreign_worker_info_city").val(),
+      'foreign_worker_info_education': $("#foreign_worker_info_education").val(),
+      'job_category': $("#job_category").val(),
     }
+
     console.log(features);
+
     $.ajax({
       type: "POST",
       contentType: "application/json; charset=utf-8",
-      url: "/predict",  // Replace with URL of POST handler
+      url: "/myvisa",
       dataType: "json",
       async: true,
       data: JSON.stringify(features),
+
       success: (result) => {
-        $('#hard_predict').html(result['prediction'] ? '<b>will</b>' : 'will <b>not</b>' );
-        $('#soft_predict').html(Math.floor(result['prob_survived']*1000)/10);
-        $('#the_result_div').show();
+        $('#hard_predict').html(result['prediction'] ? 'Yes' : 'No' );
+        $('#soft_predict').html(result['prob_certified']);
       },
       error: (result) => {
-        alert('I dunno what you did');
+        alert('Please make sure you have entered your information correctly');
       }
     })
+
   }
+
   </script>
-  </html>
+
+</html>
