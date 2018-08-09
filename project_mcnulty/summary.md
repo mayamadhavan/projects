@@ -1,3 +1,53 @@
+
+
+# Overall Process
+![alt text](/images/wealth.png)
+
+# Data
+## Internal Cleaning
+
+## External Cleaning
+
+## SQL
+
+
+# Models
+## List of Models Run
+
+## ROC Comparison
+
+## Confusion Matrix Precision vs Recall
+
+# Making Predictions
+
+
+# Application
+## Flask
+
+## Bootstrap
+
+
+
+# Going Forward
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Background
 Getting a US visa is a long and occasionally confusing process. Applicants can sink a considerable amount of resources into all the appointments and forms they have.
 
@@ -6,36 +56,8 @@ On the other hand, the government has to deal with masses of applications from a
 # Goals
 In order to minimize the amount of effort needed on both sides of the equation, I wanted to try and predict whether or not someone would get their US Visa approved using only features that an applicant would easily know about. This way, they would easily be able to find out whether they would be accepted before they even apply.
 
-# Overall Process
-Data Cleaning pt.1
-	Feature Selection 1
-	Fill NA’s
-	Feature Selection 2
-	Dummify Variables
-
-Data Cleaning pt. 2
-Undersample
-Aply Standard Scalar
-
-Modeling
-	Compare ROC Curves
-	Compare Confusion Matrices
-	Run Final Model
-
-Make Predictions
-
-Flask App
-
-# Data
 
 
-# Models
-
-
-# Application
-
-
-# Going Forward
 
 
 
