@@ -1,24 +1,18 @@
 # Domain
-I want to do a project whereing I try to identify fake news articles via their titles. I went to a liberal arts college and was in school during the rise of the right, so I've seen plenty of these types of articles floating around on social media. Since this has been in the news so much recently, I'm very familiar with the topic. Also my childhood/pipe dream was to be a journalist, so I'm pretty familiar with this domain.
+I will be working with makeup data. I'm taking reviews on Feny Beauty Pro Filt'r Matte Foundation on Sephora. I am pathologically obsessed with skincare/makeup so I know this domain well.
 
 # Data
-I've found a couple of aggragated datasets relating to this topic.
-1. [Both Real and Fake News] (https://github.com/GeorgeMcIntire/fake_real_news_dataset)
-2. [Mostly Alt-Right, All Fake] (https://www.kaggle.com/mrisdal/fake-news)
-3. [List of Datasets!] (https://github.com/sumeetkr/AwesomeFakeNews)
+There are currently 10,443 reviews on the website, all of which have some amount of text content.
 
-I want to avoid partisanship, so I'd personally go with #1. It has titles and id of real/fake
+The columns look like this:
 
-If there's a problem with all of these datasets, I could also do a scrape of titles from liberal/conservative/alt websites and hand classify the test set.
+| User | Rating | Helpful | Review | Skin Color | Skin Concern |
 
+You can find the scraped file in the main page of this repository.
 
 # Known Unknowns
-Firstly, whether or not something is fake news is inherently arbitrary. given that someone is always going to argue that something is real/not and many news articles can be read as opinion pieces (see: Laura Ingraham's recent comments). So there's one problem. 
+The biggest concern with this project is making it into a proper (complicated) NLP project.
 
-Of the optional concepts, I expect this topic to cover Topic Modeling and Classification,
+I can do sentiment analysis on the reviews to predict the output and also look at how helpful each review has been tagged as. I'd want to segment the complaints by skin color and type then see which concerns pop up more frequently (Categorizing feedback) and can maybe throw in some recommendations (eg if this concern pops up, try this product/hack).
 
-I think the topic (fake news) is interesting, but what I want to do with it is a litle boring (just ID what is fake and what isn't), which isn't really a known unknown but hey.
-
-I could also do a sentiment analysis on the response there is to articles on fake news sites as compared to or liberal/conservative reporting and id the type of people who would be sharing given articles based on their locatiom
-
-I have backup ideas as well in case this doesn't work. 
+Other than this, I'm not sure what I'd do that's really NLP. It has a clear business use case, and I'm really interested in the topic so I would like to move forward with it.

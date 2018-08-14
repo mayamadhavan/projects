@@ -1,51 +1,59 @@
-# Background
-Getting a US visa is a long and occasionally confusing process. Applicants can sink a considerable amount of resources into all the appointments and forms they have.
-
-On the other hand, the government has to deal with masses of applications from a diverse range of countries. Take a look at the map below to see a sample of just how many different types of people came into the county between 2012-2016.
-
-# Goals
-In order to minimize the amount of effort needed on both sides of the equation, I wanted to try and predict whether or not someone would get their US Visa approved using only features that an applicant would easily know about. This way, they would easily be able to find out whether they would be accepted before they even apply.
 
 # Overall Process
-Data Cleaning pt.1
-	Feature Selection 1
-	Fill NA’s
-	Feature Selection 2
-	Dummify Variables
+11. Data Cleaning pt.1
+	+ Feature Selection 1
+	+ Fill NA’s
+	+ Feature Selection 2
+	+ Dummify Variables
 
-Data Cleaning pt. 2
-Undersample
-Aply Standard Scalar
+2. Data Cleaning pt. 2
+	+ Undersample
+	+ Aply Standard Scalar
 
-Modeling
-	Compare ROC Curves
-	Compare Confusion Matrices
-	Run Final Model
+3. Modeling
+	+ Compare ROC Curves
+	+ Compare Confusion Matrices
+	+ Run Final Model
 
-Make Predictions
+4. Make Predictions
 
 Flask App
 
-# Data
+# Data Pt 1
+I used 3 datasets, 1 from Kaggle (my main dataset, with application info and outcomes) and 2 scraped from the web.
 
+Data Cleaning was a huge and time consuming part of my project.
+
+There were originally ~150 categorical features in my dataset.
+
+My goal was to create an app that could be used by people applying for a visa, so I initially narrowed in on the features that such people would be able to figure out themselves.
+
+After I did that, I set about cleaning those features.
+
+If I'd had time, I would have cleaned the train set and then applied that same cleaning to the test set. I didn't do that in this case though.
+
+The first step in cleaning the data was combining repeated columns.
+
+Then I filled gaps using either mode or mean values of each column when group by related other columns.
+
+I also feature engineered a new column, job type, which had ~14 different job categories. I made the divisions using value counts. 
+
+Finally, I took the other two datasets and used one to fix some repeated values in a column, and the other to transform city of origin to a population metric.
+
+# Data Pt 2
+I scaled my data with the standard scalar.
+
+I also under sampled to make up for imbalances because there were way more people certified than denied.
 
 # Models
+I ran multiple models and compared using both ROC and precision/recall. I decided to be agnostic and go with area under the curve for my final decision making.
 
+The models I ran were: 
+Random Forest, A Decision Tree, Logistic Regression, SGD-Log, Naive-Bayes Gaussian, Naive-Bayes Bernoulli, and Naive-Bayes Multinomial
+
+I also checked with Random Forest which features were most important, but I didn't update my model to reflect that because it wasn't relevant to my end goals.
+
+Random Forest and Logistic Regression had close scores, so I ran both on my full train and test set. Random Forest did slightly better, so I went with that.
 
 # Application
-
-
-# Going Forward
-
-
-
-Given this and the aforementioned goals, feature selection and Data Cleaning were a huge part of my project
-
-
-In my opinion, it would be better for the app to more often tell someone that they would get their visa when they won’t than the reverse. I’d rather not deter someone who would in actuality be accepted.
-
-I suppose that that’s a matter of personal preference, but assuming my viewpoint holds, I would go back and look at the precision score when calculating my model.
-
-
-
-Random forests= weighted average for the prediction for each model
+After running the model I made a prediction function and threw that into a Bootstrapped Flask App where users could either select values from a dropdown or input them. If a value they inputed for city wasn't in my dataset, the city was automatically assigned a population.
