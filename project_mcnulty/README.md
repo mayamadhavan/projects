@@ -2,5 +2,5 @@
 
 Final Submission Documents:
 1. mcnulty_slides.pdf
-2. model -> full_project.ipynb
-3. templates -> index.html
+2. In model folder, go to full_project.ipynb for the combined notebook
+3. In templates, go to index.html for the flask app
