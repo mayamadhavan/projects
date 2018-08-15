@@ -1,6 +1,5 @@
-
 # Overall Process
-11. Data Cleaning pt.1
+1. Data Cleaning pt.1
 	+ Feature Selection 1
 	+ Fill NA’s
 	+ Feature Selection 2
@@ -16,8 +15,7 @@
 	+ Run Final Model
 
 4. Make Predictions
-
-Flask App
+=======
 
 # Data Pt 1
 I used 3 datasets, 1 from Kaggle (my main dataset, with application info and outcomes) and 2 scraped from the web.
@@ -25,10 +23,6 @@ I used 3 datasets, 1 from Kaggle (my main dataset, with application info and out
 Data Cleaning was a huge and time consuming part of my project.
 
 There were originally ~150 categorical features in my dataset.
-
-My goal was to create an app that could be used by people applying for a visa, so I initially narrowed in on the features that such people would be able to figure out themselves.
-
-After I did that, I set about cleaning those features.
 
 If I'd had time, I would have cleaned the train set and then applied that same cleaning to the test set. I didn't do that in this case though.
 
@@ -39,6 +33,7 @@ Then I filled gaps using either mode or mean values of each column when group by
 I also feature engineered a new column, job type, which had ~14 different job categories. I made the divisions using value counts. 
 
 Finally, I took the other two datasets and used one to fix some repeated values in a column, and the other to transform city of origin to a population metric.
+
 
 # Data Pt 2
 I scaled my data with the standard scalar.
