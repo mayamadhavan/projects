@@ -14,6 +14,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+plt.style.use("seaborn")
+
 # from itertools import cycle
 # from sklearn import datasets
 # import logging
@@ -26,7 +28,7 @@ class clustering_pipeline:
         self.vectorizer = vectorizer
         self.n_dim = n_components
         self.reducer = reducer(n_components)
-        
+
     def fit(self, text):
         self.vectorizer.fit(text)
         self.vector_data = self.vectorizer.fit_transform(text)
@@ -37,19 +39,22 @@ class clustering_pipeline:
         tsne = TSNE(n_components = n_components, perplexity = perplexity)
         plt.figure(dpi=300)
         vector_tsne = tsne.fit_transform(self.topic_data)
-        sns.scatterplot(vector_tsne[:, 0], vector_tsne[:, 1],hue=self.labels_, alpha=0.5, size = 0.5, 
+        sns.scatterplot(vector_tsne[:, 0], vector_tsne[:, 1],hue=self.labels_, alpha=0.5, size = 0.5,
                         palette='rainbow', legend='full')
         plt.title(f'tSNE on topic space using {self.cluster_method}');
         plt.figure(dpi=300)
         plt.hist(self.labels_, bins=self.n_clusters);
-        
+        plt.xlabel('Cluster')
+        plt.ylabel('Number of Reviews in Cluster')
+        plt.title('Reviews per Cluster')
+
     def kmeans(self, n_clusters):
-        self.km = KMeans(n_clusters=n_clusters)
+        self.km = KMeans(n_clusters=n_clusters, random_state=42)
         self.labels_ = self.km.fit_predict(self.topic_data)
         self.cluster_method='kmeans'
         self.n_clusters=n_clusters
         self.cluster_centers=self.km.cluster_centers_
-        
+
     def db(self, eps, min_samples):
         self.db = DBSCAN(eps=eps, min_samples=min_samples).fit(self.topic_data)
         core_samples_mask = np.zeros_like(self.db.labels_, dtype=bool)
@@ -64,7 +69,7 @@ class clustering_pipeline:
         self.labels_ = self.sc.fit_predict(self.topic_data)
         self.cluster_method='spectral'
         self.n_clusters=n_clusters
-        
+
     def meanshift(self, quantile, n_samples):
         bandwidth = estimate_bandwidth(self.topic_data, quantile=quantile, n_samples=n_samples)
         self.ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
@@ -114,13 +119,13 @@ def best_cluster(cluster, data, column):
 
 
 def making_vectorizers(data, components):
-    count_vectorizer = CountVectorizer(ngram_range=(1, 2),  
-                                   stop_words='english', 
+    count_vectorizer = CountVectorizer(ngram_range=(1, 2),
+                                   stop_words='english',
                                    token_pattern="\\b[a-z][a-z]+\\b",
                                    lowercase=True,
                                    max_df = 0.6)
-    tfidf_vectorizer =TfidfVectorizer(ngram_range=(1, 2),  
-                                   stop_words='english', 
+    tfidf_vectorizer =TfidfVectorizer(ngram_range=(1, 2),
+                                   stop_words='english',
                                    token_pattern="\\b[a-z][a-z]+\\b",
                                    lowercase=True,
                                    max_df = 0.6)
@@ -152,4 +157,3 @@ def many_meanshift(cluster, quantile, n_samples, data, column):
         cluster.meanshift(quantile, i)
         best_cluster_ms(cluster, data, column)
         print('\n'+'-------------------------------------NEXT CLUSTER -------------------------------------------')
-
