@@ -20,10 +20,14 @@ Technically the reviews were auto sorted by most helpful, which is a poor idea b
 
 I tried a 9 hour, a 6 hour, and a full day scrape, reminding myself that this is not a primarily tech company throughout. The most I got was 2,657 reviews. Some people had posted reviews multiple times, and some hadn’t written anything, so I dropped those. Thankfully there were only a few of these.
 
-# Topic Modelling on Overall and Negative Reviews
-I ended up using count vectorizer for my topic modelling.
+Here's a Tableau Image of the data, which compares the two variables I used in the classification portion and also shows how many of each review I had.
 
-I tried all three topic modelling methods we talked about in class, LSA, LDA, and NMF.
+![alt text](/comparison.png)
+
+# Topic Modeling on Overall and Negative Reviews
+I ended up using count vectorizer for my topic modeling.
+
+I tried all three topic modeling methods we talked about in class, LSA, LDA, and NMF.
 
 This was iterative, so I went back and played with parameters as needed. For example, I removed stop words as I saw them, changed the max_df a few times, etc…
 
@@ -51,14 +55,17 @@ The rest was essentially a repeat of the classification on overall reviews; i.e.
 
 Again, no success here. :cry: :cry:
 
-
 # Star Rating
+This was a classification problem whose purpose was to ensure that reviewers were leaving the correct stars.
 
+I vectorized the data, split it into a train and test set and oversampled, then ran 6 models and compared the accuracy scores of each. I also checked the confusion matrices for the models. The best one, by accuracy score, was Naive Bayes Bernoulli, with a score of ~0.6.
 
 # Helpfulness
+The general format of this was the same as that for star rating. This was not a classification problem though because the outcome was continuous (number of people who found the review helpful), so the models I ran were different. I also didn't need to oversample. The comparison metric in this case was MSE, and the best performing model was Ridge, though LassoCV was a close second (it just took an impractical amount of time to run, and so was not ideal for the purposes of making predictions).
 
+After finding the model, I made a prediction function that would output how many people found a given review helpful.
 
-
+Sephora could use this model to promote reviews that were predicted as more helpful. This would both improve user experience and aid in marketing insights.
 
 # Final Thoughts
 Looking back, there were a couple things that I would do differently. I’m definitely happy that I took on something that I wasn’t sure would have an answer (i.e. a good cluster), but I would have wanted to prepare for that earlier on.
