@@ -22,7 +22,7 @@ I tried a 9 hour, a 6 hour, and a full day scrape, reminding myself that this is
 
 Here's a Tableau Image of the data, which compares the two variables I used in the classification portion and also shows how many of each review I had.
 
-![alt text](/comparison.png)
+![alt text](comparison.png)
 
 # Topic Modeling on Overall and Negative Reviews
 I ended up using count vectorizer for my topic modeling.
