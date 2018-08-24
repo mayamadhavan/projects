@@ -79,9 +79,9 @@ class clustering_pipeline:
         self.cluster_centers = self.ms.cluster_centers_
 
         labels_unique = np.unique(self.labels_)
-        self.n_clusters_ = len(labels_unique)
+        self.n_clusters = len(labels_unique)
 
-        print("number of estimated clusters : %d" % self.n_clusters_)
+        print("number of estimated clusters : %d" % self.n_clusters)
 
 
 def cosine_similarity(vec1, vec2):
