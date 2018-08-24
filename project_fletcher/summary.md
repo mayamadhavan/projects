@@ -21,7 +21,7 @@ Technically the reviews were auto sorted by most helpful, which is a poor idea b
 I tried a 9 hour, a 6 hour, and a full day scrape, reminding myself that this is not a primarily tech company throughout. The most I got was 2,657 reviews. Some people had posted reviews multiple times, and some hadn’t written anything, so I dropped those. Thankfully there were only a few of these.
 
 # Topic Modelling on Overall and Negative Reviews
-I used count vectorizer for all my topic modelling because_____
+I ended up using count vectorizer for my topic modelling.
 
 I tried all three topic modelling methods we talked about in class, LSA, LDA, and NMF.
 
