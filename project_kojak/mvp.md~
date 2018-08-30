@@ -1,0 +1,11 @@
+# Project Proposals
+
+So I've had quite a few project ideas, but I've been throwing them away for various reasons.
+
+1. Predicting Scholarshps- There is the education.gov college scorecard, which is absolutely massive and has multiple years. I could do a related project using this.
+2. Predicting Spread of Cholera- Not enough data, and this is a water born disease, not a seasonal one.
+3. Predicting Impact of Well Placement in Certain Areas- Not enough data about impacts of current wells (train sets)
+4. Image Recognition of Bikes for use with cameras behind cars- Not enough video data, though there is plenty image data
+6. Improving Youtube advertising using video titles and description boxes- Best idea i've had so far, not sure how to go about getting the data
+
+Basically, for number 6, the idea I have focuses on the "suggested products" boxes that show up under some videos. The brands that are on the ads are usually in the right domain (e.g. you get makeup brands under makeup videos) but the type of product is  only marginally relevant to the content. So the point oof that project would be improving the current model. 
