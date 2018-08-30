@@ -1,13 +1,15 @@
 # Project Proposals
 
+## Thought Process
 So I've had quite a few project ideas, but I've been throwing them away for various reasons.
 
-1. Predicting Scholarshps- There is the education.gov college scorecard, which is absolutely massive and has multiple years. I could do a related project using this.
+1. Predicting Scholarshps- There is the education.gov college scorecard, which is absolutely massive and has multiple years. I could do a related project using this. See below.
 2. Predicting Spread of Cholera- Not enough data, and this is a water born disease, not a seasonal one.
 3. Predicting Impact of Well Placement in Certain Areas- Not enough data about impacts of current wells (train sets)
-4. Image Recognition of Bikes for use with cameras behind cars- Not enough video data, though there is plenty image data
-6. Improving Youtube advertising using video titles and description boxes- Best idea i've had so far, not sure how to go about getting the data
+4. Image Recognition of Bikes for use with cameras behind cars- Not enough video data, though there is plenty image data and I remember that image analysis wasn't recommended.
+6. Improving Youtube advertising using video titles and description boxes- Not sure how sucessful this would be; I would need to pick and choose the videos I would use, and then I'd worry about how I could generalize given the inauthicity of the data.
 
-Basically, for number 6, the idea I have focuses on the "suggested products" boxes that show up under some videos. The brands that are on the ads are usually in the right domain (e.g. you get makeup brands under makeup videos) but the type of product is  only marginally relevant to the content. The point of that project would be improving the current model I'd be looking at either the content of the video or the content of the description boxes to see if I could match the product to the actual review listed.
+## More Promising Ideas
+For #6, the idea I have focuses on the "suggested products" boxes that show up under some videos. The brands that are on the ads are usually in the right domain (e.g. you get makeup brands under makeup videos) but the type of product is  only marginally relevant to the content. The point of that project would be improving the current model I'd be looking at either the content of the video or the content of the description boxes to see if I could match the product to the actual review listed.
 
-With the College Scorecard Data I could make a recommender of the best school to go to based on your scores, income, future income goals, and interests. I could also look at how schools have changed over time combined with their US News Ranking for that given year (for schools that have been ranked), etc... There's quite a bit of data cleaning needed on this one, so I could do that first then see what can be done. 7594 schools with 2060 columns that I can make sense of over ~10 years. 
+With the College Scorecard Data I could make a recommender of the best school to go to based on your scores, income, future income goals, and interests. I could also look at how schools have changed over time combined with their US News Ranking for that given year (for schools that have been ranked), etc... There's quite a bit of data cleaning needed on this one, so I could do that first then see what can be done. 7594 schools with 2060 columns that I can make sense of over ~10 years.
