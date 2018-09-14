@@ -56,7 +56,7 @@ class clustering_pipeline:
         self.n_clusters=n_clusters
 
     def meanshift(self, quantile, n_samples):
-        bandwidth = estimate_bandwidth(self.topic_data, quantile=quantile, n_samples=n_samples)
+        bandwidth = estimate_bandwidth(self.data, quantile=quantile, n_samples=n_samples)
         self.ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
         self.ms.fit(self.data)
         self.labels_ = self.ms.labels_
@@ -69,7 +69,7 @@ class clustering_pipeline:
         print("number of estimated clusters : %d" % self.n_clusters)
         
     def tsne(self, n_components, perplexity):
-        tsne = TSNE(n_components = n_components, perplexity = perplexity)
+        tsne = TSNE(n_components = n_components, perplexity = perplexity, random_state=42)
         plt.figure(dpi=300)
         vector_tsne = tsne.fit_transform(self.data)
         sns.scatterplot(vector_tsne[:, 0], vector_tsne[:, 1],hue=self.labels_, alpha=0.5, size = 0.5,
@@ -98,7 +98,8 @@ def best_cluster_ms(cluster, data, column):
         print( f"\n + {distances[-4:]}")
         for i in indices:
             print("\n" + column[i])
-            
+
+# look at edges vs centroid
 def best_cluster(cluster, data, column):
     overall_clusters=[]
     for number in set(cluster.labels_):
@@ -108,16 +109,24 @@ def best_cluster(cluster, data, column):
             dist = cosine_similarity(cluster_center,vector)
             distances.append((dist, index))
         distances.sort()
-        indices=[x[1] for x in distances[-4:]]
+        indices_closest=[x[1] for x in distances[-4:]]
+        indices_furthest=[x[1] for x in distances[:4]]
         print( f"\n + {distances[-4:]}")
-        for i in indices:
-            print("\n" + column[i])
+        print(" ")
+        print('Closest to Center')
+        for i in indices_closest:
+            print(column[i])
+        print(" ")
+        print('Farthest from Center')
+        for i in indices_furthest:
+            print(column[i])    
 
 
-def many_kmeans(cluster, n_clusters, data, column):
+def many_kmeans(cluster, n_clusters, data, column, components, perplex):
     for i in range(1, n_clusters+1):
         cluster.kmeans(i)
-        best_cluster(cluster, data, column)
+        cluster.tsne(components, perplex)
+#         best_cluster(cluster, data, column)
         print('\n'+'-------------------------------------NEXT CLUSTER -------------------------------------------')
 
 def many_db(cluster, eps, min_samples):
@@ -130,9 +139,10 @@ def many_spectral(cluster, n_clusters):
         print('\n'+'-------------------------------------NEXT CLUSTER -------------------------------------------')
         
 def many_meanshift(cluster, quantile, n_samples, data, column):
-    for i in range(4, n_samples+4):
+    for i in range(7, n_samples+7):
         cluster.meanshift(quantile, i)
-        best_cluster_ms(cluster, data, column)
+#         cluster.tsne(components, perplex)
+#         best_cluster_ms(cluster, data, column)
         print('\n'+'-------------------------------------NEXT CLUSTER -------------------------------------------')
         
 
