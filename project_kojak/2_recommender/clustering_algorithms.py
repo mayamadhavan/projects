@@ -73,7 +73,7 @@ class clustering_pipeline:
         plt.figure(dpi=300)
         vector_tsne = tsne.fit_transform(self.data)
         sns.scatterplot(vector_tsne[:, 0], vector_tsne[:, 1],hue=self.labels_, alpha=0.5, size = 0.5,
-                        palette='rainbow', legend='full')
+                        palette='rainbow', legend=False)
         plt.title(f'tSNE on topic space using {self.cluster_method}');
         plt.figure(dpi=300)
         plt.hist(self.labels_, bins=self.n_clusters);
