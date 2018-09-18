@@ -1,1 +1,2 @@
 # Metis Final Project Repo
+In this project, I tackle US college admissions, a lucrative but confusing industry mired in preconcevied notions about schools and students. I build a cluster based recommender for students looking for schools to apply to based on schools they know they want to attend, removing rankings from my clustering algorithm. You can find more details in the summary file.
