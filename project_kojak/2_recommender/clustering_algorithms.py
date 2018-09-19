@@ -78,8 +78,8 @@ class clustering_pipeline:
         plt.figure(dpi=300)
         plt.hist(self.labels_, bins=self.n_clusters);
         plt.xlabel('Cluster')
-        plt.ylabel('Number of Reviews in Cluster')
-        plt.title('Reviews per Cluster')
+        plt.ylabel('Number of Schools')
+        plt.title('Schools per Cluster')
         
         
 def cosine_similarity(vec1, vec2):
